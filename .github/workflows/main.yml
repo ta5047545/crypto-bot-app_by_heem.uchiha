@@ -24,13 +24,13 @@ jobs:
         pip install --upgrade buildozer cython
 
     - name: Build APK with Buildozer
+      env:
+        ACCEPT_BUILD_TOOLS_CHECKSUM: "true"
       run: |
-        yes | buildozer android debug
+        buildozer android debug
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
         name: package
         path: bin/*.apk
-
-
